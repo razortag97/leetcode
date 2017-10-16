@@ -10,9 +10,7 @@ public class Solution {
 		
 		Set<String> testSet = new HashSet<String>();
 		
-		for (String string : s) {
-			
-		}
+		
 		
 		return maxLength;
 	}
