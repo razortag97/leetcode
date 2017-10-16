@@ -14,7 +14,7 @@ class Solution {
             return error;
         }
         
-        int maxMerge = mMax + nMax - 1; // Max Length of the new Array
+        int maxMerge = mMax + nMax; // Max Length of the new Array
         
         int mergeArr[] = new int[maxMerge];
         
@@ -42,7 +42,7 @@ class Solution {
             k++;
         }
         
-        int temp = maxMerge + 1;
+        int temp = maxMerge;
         int t1 = temp % 2;
         int medianIndex = -1;
         double median = 0;
@@ -52,15 +52,18 @@ class Solution {
             median = (double) mergeArr[medianIndex];
         }else{
             medianIndex = temp / 2;
-            median = (mergeArr[medianIndex] + mergeArr[medianIndex -1])/2;
+            median = (double) (mergeArr[medianIndex] + mergeArr[medianIndex -1])/2;
         }
         
         return median;
     }
 
 	public static void main(String[] args) {
-		int nums1[] = new int[]{1,3};
-		int nums2[] = new int[]{2};
+		//int nums1[] = new int[]{1,3};
+		//int nums2[] = new int[]{2};
+		
+		int nums1[] = new int[]{1,2};
+		int nums2[] = new int[]{3,4};
 		
 		Solution solution = new Solution();
 		double median = solution.findMedianSortedArrays(nums1, nums2);
