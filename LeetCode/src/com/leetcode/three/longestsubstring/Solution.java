@@ -9,43 +9,73 @@ public class Solution {
 		if(s == null || s.isEmpty()){
 			return 0;
 		}
+
+		int maxLength = 0;
+		int i = 0; //Current pointer
+		int counter=0; //Count the current Length
+		//String t1 = new String(new char[]{s.charAt(i)});
+		Set<String> chars = new HashSet<String>();
+		String t1 = new String(new char[]{s.charAt(i)});
+		chars.add(t1);
+		i++;
+		counter++;
 		
-		int maxLength = -1;
-		Set<String> testSet = new HashSet<String>();
-		int maxCounter =-2125;
-		int counter = 0;
-		int i =0; // String traverser
-		
-		for (i=0;i<s.length();i++){
-			char currentChar = s.charAt(i);
-			String c = new String(new char[]{currentChar});
-			if(testSet.contains((String)c)){
-				if(counter > maxCounter){
-					maxCounter = counter;
-				}
-				testSet.clear();
-				counter=0;
-				
-				//Adding the new char
-				testSet.add(c);
+		while(i < s.length()){
+			t1 = new String(new char[]{s.charAt(i)});
+			if(!chars.contains((String) t1)){
+				chars.add(t1);
 				counter++;
 			}else{
-				testSet.add(c);
-				counter++;
+				
+		        String currChar = new String(new char[]{s.charAt(i)});
+		        int tempPointer = i+1;
+				while(tempPointer < s.length()){
+					String t2 = new String(new char[]{s.charAt(tempPointer)});
+					// If character is repeating keep moving to the next char
+					if(t2.equals(currChar)){
+						tempPointer++;
+					}else{
+						break;
+					}
+				}// while to check for repeating chars ends here
+				//dvddefgaack
+				if(tempPointer-1 > i && tempPointer < s.length()){ // the char is repeating more than once
+					i = tempPointer-1;
+					chars.clear();
+					if(counter > maxLength){ // Register the max length
+						maxLength = counter;
+						counter=0;
+					}
+					continue;
+				}else{
+					chars.clear();
+					if(counter > maxLength){ // Register the max length
+						maxLength = counter;
+						counter=0;
+					}
+					continue;
+				}
+				
 			}
+			
+			i++;
+		}// Main String traversor while ends here
+
+		if(maxLength < counter){ // To cover the case where length of the String is 1. 
+			maxLength=counter;
 		}
-		
-		if(counter > maxCounter){
-			maxCounter = counter;
-		}
-		
-		return maxCounter;
+
+		return maxLength;
 	}
 	
 	public static void main(String[] args) {
 		Solution s = new Solution();
+		//aab
+		//int length = s.lengthOfLongestSubstring("aab");
 		//int length = s.lengthOfLongestSubstring("abcabcbb");
-		int length = s.lengthOfLongestSubstring("c");
+		//int length = s.lengthOfLongestSubstring("dvddefgaack");
+		//int length = s.lengthOfLongestSubstring("abcabcbb");
+		int length = s.lengthOfLongestSubstring("abcabcbb");
 		System.out.println(length);
 	}
 
