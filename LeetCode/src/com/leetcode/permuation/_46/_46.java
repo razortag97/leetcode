@@ -1,9 +1,9 @@
-package com.leetcode.permuation._43;
+package com.leetcode.permuation._46;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class _43 {
+public class _46 {
 	
 	public List<List<Integer>> permutation(int[] nums){
 		List<List<Integer>> sol = new ArrayList<List<Integer>>();
@@ -31,7 +31,7 @@ public class _43 {
 	}
 
 	public static void main(String[] args) {
-		_43 test = new _43();
+		_46 test = new _46();
 		int[] nums = {1,2,3,4};
 		test.permutation(nums);
 	}
